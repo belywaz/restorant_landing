@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://fonts.google.com/share?selection.family=Marck+Script">
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <title>Document</title>
+    <style>
+        :root {
+            --primary-color: #344D36;
+            --secondary-color: #AC4131;
+            --text-color: #E1DDCC;
+            --background-color: #1D1C13;
+        }
+
+        #map { height: 500px; width: 1000px; }
+        
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: var(--secondary-color);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        body {
+            background: var(--background-color);
+            background-size: cover;
+            color: var(--text-color);
+        }
+
+        footer {
+            background: var(--secondary-color);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin: 5px 0;
+        }
+
+        h1, h2 {
+            font-family: 'Marck Script', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .frame {
+            display: flex;
+            margin: 0 auto;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media(max-width: 576px){
+            body {
+                color: red;
+            }
+            .menu {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <header>
+            <div class="container">
+                <div class="header">
+                    <h1>Welcome to My Website!</h1>
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="#about">Про нас</a></li>
+                            <li><a href="#gallery">Галерея</a></li>
+                            <li><a href="#contact">Напишіть нам!</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        
+        <main class="container">
+            <section id="about">
+                <h2>Про нас</h2>
+                <p>Цей веб-сайт призначений для надання інформації на різні теми. Ми прагнемо підтримувати наш контент оновленим і актуальним.</p>
+            </section>
+        
+            <section id="gallery">
+                <h2>Галерея</h2>
+                <ul class="flex-container">
+                    <li><img src="photos/surneke.jpg" alt="Image 1" style="width: 100%; max-width: 300px;"></li>
+                    <li><img src="photos/krevetki.jpg" alt="Image 2" style="width: 100%; max-width: 300px;"></li>
+                    <li><img src="photos/nekrevetki.jpg" alt="Image 3" style="width: 100%; max-width: 300px;"></li>
+                    <li><img src="https://www.bahroma1.ru/templates/bahroma1/img/slider/2300x1500_61b11ccbd3b30.jpg" alt="Image 4" style="width: 100%; max-width: 300px;"></li>
+                    <li><img src="https://kanapulka.com.ua/image/cache/catalog/recipe/chebureki-pork/chebureki-pork-7-450x450.jpg" alt="Image 5" style="width: 100%; max-width: 300px;"></li>
+                    <li><img src="https://s6.stc.all.kpcdn.net/family/wp-content/uploads/2022/03/retsepty-blyud-na-khehllouin-960x540.jpg" alt="Image 6" style="width: 100%; max-width: 300px;"></li>
+                </ul>
+            </section>
+
+            <div id="map"></div>
+            <div>
+                <h2>Де ми?</h2>
+                <script>
+                    const map = L.map('map').setView([50.4501, 30.5234], 5);
+            
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(map);
+            
+                    const locations = [
+                        { name: "Сильпо", coords: [50.4713541, 30.655686], address: "вул. Загорівська, 21, Київ", nomber: "0800301707", work_moment: "пн-нед 08:00–23:00", photo: "https://lh5.googleusercontent.com/p/AF1QipOKUxQDFEWXEaS6RS5hYI8mw70m0pHYMS31cHR1=w408-h281-k-no"},
+                        { name: "Сильпо", coords: [46.303330, 30.4429167], address: "вул. проспект Миру, 19", nomber: "0800301707", work_moment: "пн-нед 08:00–23:00", photo: "https://lh5.googleusercontent.com/p/AF1QipOeXfvnUvnlll9FpUMZnlkpQvtKl6QCwHquTXQ6=w408-h249-k-no"},
+                        { name: "Сильпо", coords: [50.471407, 30.4814607], address: "вул. Ярославська, 56а, Київ", nomber: "0800301707", work_moment: "пн-нед 08:00–233:00", photo: "https://lh5.googleusercontent.com/p/AF1QipPu0MjANaJ9N-5nEU37kQC8hIP9v3BJd9fCQ-92=w408-h272-k-no"},
+                    ];
+
+                    locations.forEach(loc => {
+                        L.marker(loc.coords)
+                        .addTo(map)
+                        .bindPopup(`<b>${loc.name}</b><br>
+                        📍 Адрес: ${loc.address}<br>
+                        📞 Номер телефону: ${loc.nomber}<br>
+                        ⏲ Час роботи: ${loc.work_moment}`)
+            
+                        .openPopup();
+                    });
+                </script>
+            </div>
+        
+            <section id="contact">
+                <h2>Напишіть нам!</h2>
+                <form>
+                    <label for="name">Ім'я:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Повідомлення:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <button type="submit">Надіслати</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer">
+                    2025
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
